@@ -20,6 +20,8 @@ cdef extern from "minipcl.h":
                               cpp.PointNormalCloud_t) except +
     void mpcl_sacnormal_set_axis(cpp.SACSegmentationNormal_t,
                                  double ax, double ay, double az) except +
+    void mpcl_sac_set_axis(cpp.SACSegmentation_t,
+                                 double ax, double ay, double az) except +
     void mpcl_extract(cpp.PointCloud_t, cpp.PointCloud_t, cpp.PointIndices_t *,
                       bool) except +
 
@@ -89,6 +91,10 @@ cdef class Segmentation:
         self.me.setMethodType (m)
     def set_distance_threshold(self, float d):
         self.me.setDistanceThreshold (d)
+    def set_axis(self, float ax, float ay, float az):
+        mpcl_sac_set_axis(deref(self.me),ax,ay,az)
+    def set_eps_angle(self, float angle):
+        self.me.setEpsAngle (angle)
 
 #yeah, I can't be bothered making this inherit from SACSegmentation, I forget the rules
 #for how this works in cython templated extension types anyway

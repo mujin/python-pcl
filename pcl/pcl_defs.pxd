@@ -82,6 +82,7 @@ cdef extern from "pcl/segmentation/sac_segmentation.h" namespace "pcl":
         void segment (PointIndices, ModelCoefficients)
 
     cdef cppclass SACSegmentation[T]:
+        void setEpsAngle(float)
         void setOptimizeCoefficients (bool)
         void setModelType (SacModel)
         void setMethodType (int)

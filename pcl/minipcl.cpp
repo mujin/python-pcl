@@ -32,6 +32,13 @@ void mpcl_sacnormal_set_axis(pcl::SACSegmentationFromNormals<pcl::PointXYZ, pcl:
     sac.setAxis(vect);
 }
 
+void mpcl_sac_set_axis(pcl::SACSegmentation<pcl::PointXYZ> &sac,
+                             double ax, double ay, double az)
+{
+    Eigen::Vector3f vect(ax,ay,az);
+    sac.setAxis(vect);
+}
+
 void mpcl_extract(pcl::PointCloud<pcl::PointXYZ> &incloud,
                   pcl::PointCloud<pcl::PointXYZ> &outcloud,
                   pcl::PointIndices *indices,
